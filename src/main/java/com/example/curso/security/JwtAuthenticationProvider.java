@@ -12,7 +12,7 @@ import com.example.curso.model.JwtUser;
 import com.example.curso.model.JwtUserDetails;
 
 @Component
-public class JwtAuthenticacionProvider extends AbstractUserDetailsAuthenticationProvider {
+public class JwtAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
 	@Autowired
 	private JwtValidator validator;
