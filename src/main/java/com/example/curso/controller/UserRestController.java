@@ -39,5 +39,19 @@ public class UserRestController {
 		}
 		
 	}
+	
+	@PostMapping(value= "/auth")
+	public ResponseEntity<?> loginUser(@RequestBody User user){
+		User userDb = userService.checkUserLogin(user);
+		if(userDb != null) {
+			JwtUser jwtUser = new JwtUser();
+			jwtUser.setId(userDb.getId());
+			jwtUser.setUserName(userDb.getEmail());
+			return new ResponseEntity<>((Collections.singletonMap("jwtToken", jwtGenerator.generate(jwtUser))),HttpStatus.CREATED);
+		}else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		
+	} 
 
 }
